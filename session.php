@@ -1,7 +1,6 @@
 <?php
    include('config.php');
    session_start();
-   $timezone = $_SESSION['time'];
    
    $user_check = $_SESSION['login_user'];
    
