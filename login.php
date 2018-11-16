@@ -23,7 +23,7 @@
          header("location: index.php");
       }else {
          $error = "Your Login Name $myusername or Password $mypassword is invalid";
-         header("location: login/loginTemplate.php");
+         header("location: /login/loginTemplate.php");
       }
    }
 ?>

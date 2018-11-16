@@ -8,7 +8,7 @@
       $sql = "INSERT INTO posts (who, body) VALUES ('$login_session', '$postBody')";
 
       if ($db->query($sql) === TRUE) {
-        header("Location: post.php");
+        header("Location: page/post.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

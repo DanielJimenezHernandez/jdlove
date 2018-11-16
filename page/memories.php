@@ -1,5 +1,5 @@
 <?php
-   include('session.php');
+   include('../session.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,18 +12,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>J&D - Memories</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="../css/clean-blog.min.css" rel="stylesheet">
 
   </head>
 
@@ -32,7 +32,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.php">J&D:Welcome <?php echo $login_session; ?></a>
+        <a class="navbar-brand" href="../index.php">J&D:Welcome <?php echo $login_session; ?></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -40,19 +40,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.php">Home</a>
+              <a class="nav-link" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="page/todo.php">To Do Lists</a>
+              <a class="nav-link" href="todo.php">To Do Lists</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="page/post.php">Posting to Eachother</a>
+              <a class="nav-link" href="post.php">Posting to Eachother</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="page/memories.php">Memories</a>
+              <a class="nav-link" href="memories.php">Memories</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="logout.php">Log Out</a>
+              <a class="nav-link" href="../logout.php">Log Out</a>
             </li>
           </ul>
         </div>
@@ -60,7 +60,7 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/memories.jpg')">
+    <header class="masthead" style="background-image: url('../img/memories.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -77,12 +77,77 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="jumbotron">
-            <h1 class="display-4">Under Construction</h1>
-            </p>
-          </div>
-        </div>
+      <div class="container">
+
+<h1 class="my-4 text-center text-lg-center">Moments Gallery</h1>
+
+<div class="row text-center text-lg-left">
+
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+    <h5 class="modal-title">Image Name</h5>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-4 col-xs-6">
+    <a href="#" class="d-block mb-4 h-100">
+      <img class="img-fluid img-thumbnail" src="https://cdn.bestday.net/_lib/HTML/Destinos/hoteles-en-playa-del-carmen.jpg" alt="">
+    </a>
+  </div>
+</div>
+
+</div>
+<!-- /.container -->
       </div>
     </div>
 
