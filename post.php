@@ -14,9 +14,6 @@
 
     <title>Clean Blog - Start Bootstrap Theme</title>
 
-    <!-- Include jquery-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,23 +25,7 @@
     <!-- Custom styles for this template -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
     
-    <!--Get user timezone script-->
-    <script type="text/javascript">
-    $(document).ready(function() {
-        if("<?php echo $timezone; ?>".length==0){
-            var visitortime = new Date();
-            var visitortimezone = visitortime.getTimezoneOffset();
-            $.ajax({
-                type: "GET",
-                url: "http://jdlove.com.mx/timezone.php",
-                data: 'time='+ visitortimezone,
-                success: function(){
-                    location.reload();
-                }
-            });
-        }
-    });
-</script>
+
   </head>
 
   <body>
@@ -134,13 +115,8 @@
           echo '      <a href="#">';
           echo        $who;
           echo '      </a>';
-          echo '      on a ';
-          $tz_from = 'America/Denver';
-          $tz_to = 'UTC';
-          $dt = new DateTime($timestamp,new DateTimeZone($tz_from));
-          $dt->setTimeZone(new DateTimeZone($tz_to));
-          $dt->add(new DateInterval('PT' . $timezone . 'M'));
-          echo $dt->format('l, F d Y h:i a');
+          echo '      on ';
+          echo        $timestamp;
           echo ' :';
           echo '    </p>';
           echo '      <h3 class="post-subtitle">';
