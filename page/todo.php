@@ -53,13 +53,13 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="todo.php">To Do Lists</a>
+              <a class="nav-link" href="page/todo.php">To Do Lists</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="post.php">Posting to Eachother</a>
+              <a class="nav-link" href="page/post.php">Posting to Eachother</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="memories.php">Memories</a>
+              <a class="nav-link" href="page/memories.php">Memories</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Log Out</a>
