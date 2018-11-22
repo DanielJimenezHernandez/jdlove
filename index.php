@@ -74,7 +74,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
 								<ul class="dropdown-menu">
 								  <li><a href="">User Here</a></li>
-								  <li><a href="">Log Out</a></li>
+								  <li><a href="php/logout.php">Log Out</a></li>
 								</ul>
 							  </li>
 							</ul>
@@ -113,6 +113,7 @@
 								   
 									  <div class="well"> 
 										   <form class="form-horizontal" role="form">
+												 
 											<h4>What's New</h4>
 											 <div class="form-group" style="padding:14px;">
 											  <textarea class="form-control" placeholder="Update your status"></textarea>
