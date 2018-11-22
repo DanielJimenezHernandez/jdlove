@@ -20,6 +20,6 @@
    $login_email = $row['email'];
    
    if(!isset($_SESSION['login_user'])){
-      header("location: login/loginTemplate.php");
+      header("location: ../login/login.php");
    }
 ?>

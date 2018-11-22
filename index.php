@@ -1,15 +1,18 @@
+<?php
+   include('php/session.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-        <meta charset="utf-8">
         <title>J&D</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="assets/css/bootstrap.css" rel="stylesheet">
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <link href="assets/css/facebook.css" rel="stylesheet">
+				<link href="assets/css/facebook.css" rel="stylesheet">
     </head>
     
     <body>
@@ -73,7 +76,7 @@
 							  <li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
 								<ul class="dropdown-menu">
-								  <li><a href="">User Here</a></li>
+								  <li><a href=""><?php echo $login_session; ?></a></li>
 								  <li><a href="php/logout.php">Log Out</a></li>
 								</ul>
 							  </li>
@@ -94,7 +97,7 @@
 									  <div class="panel panel-default">
 										<div class="panel-thumbnail"><img src="assets/img/bg_5.jpg" class="img-responsive"></div>
 										<div class="panel-body">
-										  <p class="lead">User Here</p>
+										  <p class="lead"><?php echo $login_session; ?></p>
 										  <p>Posted n times</p>
 										</div>
 									  </div>
@@ -152,31 +155,32 @@
 								  
 								  <!-- main col right -->
 								  <div class="col-sm-7">
+										
 									   
-										<div class="well"> 
-										   <form class="form">
-											<h4>Sign-up</h4>
-											<div class="input-group text-center">
-											<input class="form-control input-lg" placeholder="Enter your email address" type="text">
-											  <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="button">OK</button></span>
-											</div>
-										  </form>
-										</div>
-							  
-									   <div class="panel panel-default">
-										 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
-										  <div class="panel-body">
-											<p><img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
-											<div class="clearfix"></div>
-											<hr>
-											Design, build, test, and prototype 
-		using Bootstrap in real-time from your Web browser. Bootply combines the
-		 power of hand-coded HTML, CSS and JavaScript with the benefits of 
-		responsive design using Bootstrap. Find and showcase Bootstrap-ready 
-		snippets in the 100% free Bootply.com code repository.
-										  </div>
-									   </div>
-									
+										<?php
+										$sql = "SELECT * FROM `posts` ORDER BY `posts`.`timestamp` DESC";
+
+										$result = mysqli_query($db,$sql);
+
+										while($tableName = mysqli_fetch_row($result)) {
+											
+										$id = $tableName[0];
+										$timestamp = $tableName[1];
+										$who = $tableName[2];
+										$body = $tableName[3];
+
+									   echo '<div class="panel panel-default">';
+										 echo '<div class="panel-heading"><a href="#" class="pull-right">Edit</a> <h4> Posted by '. $who.'</h4></div>';
+										 echo '<div class="panel-body">';
+										 echo '<p><img src="assets/img/150x150.gif" class="img-circle pull-right"><h>'.$body.'</h></p>';
+										 echo '<div class="clearfix"></div>';
+										 echo '<hr>';
+										 echo 'Posted on '.$timestamp;
+										 echo '</div>';
+										 echo '</div>';
+										}
+										 ?>
+
 									   <div class="panel panel-default">
 										 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
 										  <div class="panel-body">
