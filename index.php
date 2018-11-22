@@ -13,6 +13,13 @@
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 				<link href="assets/css/facebook.css" rel="stylesheet">
+				<script type="text/javascript">
+					var timezone_offset_minutes = new Date().getTimezoneOffset();
+					timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
+					document.cookie = "TimeZoneOffset=" + timezone_offset_minutes;
+					// Timezone difference in minutes such as 330 or -360 or 0
+					console.log(timezone_offset_minutes); 
+				</script>
     </head>
     
     <body>
@@ -131,7 +138,19 @@
 										 echo '<div class="clearfix"></div>';
 										 echo '<hr>';
 										 echo 'Posted on ';
-										 echo date('M j Y g:i A', strtotime($timestamp));
+										//Adjust Time from cookie
+										$timezone_offset_minutes = $_COOKIE['TimeZoneOffset'];  // $_GET['timezone_offset_minutes']
+
+										// Convert minutes to seconds
+										$timezone_name = timezone_name_from_abbr("", $timezone_offset_minutes*60, false);
+										$clientTimeZone = new DateTimeZone($timezone_name);
+										$serverTimeZone = new DateTimeZone(date_default_timezone_get());
+										
+										 //DateTime Object from mysql date
+										 $dt = new DateTime($timestamp,$serverTimeZone);
+										 $dt->setTimeZone($clientTimeZone);
+										 echo $dt->format('M j Y g:i A');
+
 										 echo '</div>';
 										 echo '</div>';
 										}
