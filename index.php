@@ -61,7 +61,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							  </button>
-							  <a href="#" class="navbar-brand logo">J</a>
+							  <a href="#" class="navbar-brand logo">&hearts;</a>
 							</div>
 							<nav class="collapse navbar-collapse" role="navigation">
 							<ul class="nav navbar-nav">
@@ -74,7 +74,7 @@
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 							  <li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Admin</a>
 								<ul class="dropdown-menu">
 								  <li><a href=""><?php echo $login_session; ?></a></li>
 								  <li><a href="php/logout.php">Log Out</a></li>
@@ -95,62 +95,13 @@
 								 <div class="col-sm-5">
 								   
 									  <div class="panel panel-default">
-										<div class="panel-thumbnail"><img src="assets/img/bg_5.jpg" class="img-responsive"></div>
+										<div class="panel-thumbnail"><img src= <?php echo '"'.$profilePic.'"'; ?> class="img-responsive"></div>
 										<div class="panel-body">
 										  <p class="lead"><?php echo $login_session; ?></p>
 										  <p>Posted n times</p>
 										</div>
 									  </div>
 
-								   
-									  <div class="panel panel-default">
-										<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
-										  <div class="panel-body">
-											<div class="list-group">
-											  <a href="http://usebootstrap.com/theme/facebook" class="list-group-item">Modal / Dialog</a>
-											  <a href="http://usebootstrap.com/theme/facebook" class="list-group-item">Datetime Examples</a>
-											  <a href="http://usebootstrap.com/theme/facebook" class="list-group-item">Data Grids</a>
-											</div>
-										  </div>
-									  </div>
-								   
-									  <div class="well"> 
-										   <form class="form-horizontal" role="form">
-												 
-											<h4>What's New</h4>
-											 <div class="form-group" style="padding:14px;">
-											  <textarea class="form-control" placeholder="Update your status"></textarea>
-											</div>
-											<button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-										  </form>
-									  </div>
-								   
-									  <div class="panel panel-default">
-										 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>More Templates</h4></div>
-										  <div class="panel-body">
-											<img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">Free @Bootply</a>
-											<div class="clearfix"></div>
-											There a load of new free Bootstrap 3
-		 ready templates at Bootply. All of these templates are free and don't 
-		require extensive customization to the Bootstrap baseline.
-											<hr>
-											<ul class="list-unstyled"><li><a href="http://usebootstrap.com/theme/facebook">Dashboard</a></li><li><a href="http://usebootstrap.com/theme/facebook">Darkside</a></li><li><a href="http://usebootstrap.com/theme/facebook">Greenfield</a></li></ul>
-										  </div>
-									  </div>
-								   
-									  <div class="panel panel-default">
-										<div class="panel-heading"><h4>What Is Bootstrap?</h4></div>
-										<div class="panel-body">
-											Bootstrap is front end frameworkto 
-		build custom web applications that are fast, responsive &amp; intuitive.
-		 It consist of CSS and HTML for typography, forms, buttons, tables, 
-		grids, and navigation along with custom-built jQuery plug-ins and 
-		support for responsive layouts. With dozens of reusable components for 
-		navigation, pagination, labels, alerts etc..                          </div>
-									  </div>
-
-										
-								   
 								  </div>
 								  
 								  <!-- main col right -->
@@ -169,13 +120,18 @@
 										$who = $tableName[2];
 										$body = $tableName[3];
 
+										$ses_sql = mysqli_query($db,"select thumbnail from members where username = '$who' ");
+										$row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+										$thumbnail = $row['thumbnail'];
+
 									   echo '<div class="panel panel-default">';
 										 echo '<div class="panel-heading"><a href="#" class="pull-right">Edit</a> <h4> Posted by '. $who.'</h4></div>';
 										 echo '<div class="panel-body">';
-										 echo '<p><img src="assets/img/150x150.gif" class="img-circle pull-right"><h>'.$body.'</h></p>';
+										 echo '<p><img src="'.$thumbnail.'" class="img-circle pull-right"><h>'.$body.'</h></p>';
 										 echo '<div class="clearfix"></div>';
 										 echo '<hr>';
-										 echo 'Posted on '.$timestamp;
+										 echo 'Posted on ';
+										 echo date('M j Y g:i A', strtotime($timestamp));
 										 echo '</div>';
 										 echo '</div>';
 										}
@@ -272,21 +228,20 @@
 		  <div class="modal-dialog">
 		  <div class="modal-content">
 			  <div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
-					Update Status
+				  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					Post only with love
 			  </div>
 			  <div class="modal-body">
-				  <form class="form center-block">
+				  <form action="php/postScript.php" method="post" class="form center-block">
 					<div class="form-group">
-					  <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+					  <textarea id="postBody" name="body" class="form-control input-lg" autofocus="" placeholder="Say Something..."></textarea>
 					</div>
-				  </form>
-			  </div>
-			  <div class="modal-footer">
+					<div class="modal-footer">
 				  <div>
-				  <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
-					<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+				  <button type="submit" class="btn btn-primary btn-sm" aria-hidden="true">Post</button>
 				  </div>	
+			  </div>
+				  </form>
 			  </div>
 		  </div>
 		  </div>
