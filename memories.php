@@ -91,9 +91,11 @@
 						<!-- /top nav -->
 					  
 						<div class="padding">
-							<div class="full col-sm-9">
+							
 							  
 								<!-- content -->
+							<div class="row">
+							<div class="full col-sm-9">
 								<div class="well well-lg text-center"> 
 									<form class="form" role="form" action="php/fileUpload.php" method="post" enctype="multipart/form-data">
 										<h4>Upload a Memory</h4>
@@ -105,9 +107,11 @@
 										<button type="submit" name="submit" class="btn btn-primary ">Upload</button>
 									</form>
 								</div>
+							</div><!-- /col-9 -->
+							</div>
 
+							<div class="row">
 								<div class="tz-gallery">
-									<div class="row">
 									 <?php
 										$sql  = 'SELECT foto_name, path, caption FROM Pictures WHERE user_id = '.$_SESSION['login_userId'].' or user_id = '.$_SESSION['login_significantOther'].' ORDER BY RAND()';
 										$result = $db->query($sql);
@@ -119,10 +123,10 @@
 										$path = $fetch_posts['path'];
 										$caption = $fetch_posts['caption'];
 
-										echo '<div class="col-sm-4 col-md-4">';
+										echo '<div class="col-sm-12 col-md-6 col-md-4">';
 										echo  '<div class="thumbnail">';
 										echo		'<a class="lightbox" href="'.$path.'">';
-										echo				'<img class="img-fluid img-thumbnail" style="height:200px; width: 100%; object-fit: cover;"  src="'.$path.'" alt="'.$fotoName.'">';
+										echo				'<img class="img-thumbnail" style="height:200px; width: 100%; object-fit: cover;"  src="'.$path.'" alt="'.$fotoName.'">';
 										echo		'</a>';
 										echo		'<div class="caption">';
 										echo				'<h3>'.$fotoName.'</h3>';
@@ -137,10 +141,9 @@
 										}
 										?>
 
-									</div>
 								</div>
-								
-							</div><!-- /col-9 -->
+							<div class="row">
+
 						</div><!-- /padding -->
 					</div>
 					<!-- /main -->
