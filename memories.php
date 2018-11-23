@@ -111,7 +111,7 @@
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
 															<a class="lightbox" href="../images/park.jpg">
-																	<img src="../images/park.jpg" alt="Park">
+																	<img src="img/pics/memory1.jpg" alt="Park">
 															</a>
 															<div class="caption">
 																	<h3>Thumbnail label</h3>
@@ -122,7 +122,7 @@
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
 															<a class="lightbox" href="../images/bridge.jpg">
-																	<img src="../images/bridge.jpg" alt="Bridge">
+																	<img src="img/pics/memory2.jpg" alt="Bridge">
 															</a>
 															<div class="caption">
 																	<h3>Thumbnail label</h3>
@@ -133,7 +133,7 @@
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
 															<a class="lightbox" href="../images/tunnel.jpg">
-																	<img src="../images/tunnel.jpg" alt="Tunnel">
+																	<img src="img/pics/memory3.jpg" alt="Tunnel">
 															</a>
 															<div class="caption">
 																	<h3>Thumbnail label</h3>
@@ -144,7 +144,7 @@
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
 															<a class="lightbox" href="../images/coast.jpg">
-																	<img src="../images/coast.jpg" alt="Coast">
+																	<img src="img/pics/memory4.jpg" alt="Coast">
 															</a>
 															<div class="caption">
 																	<h3>Thumbnail label</h3>
@@ -155,7 +155,7 @@
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
 															<a class="lightbox" href="../images/rails.jpg">
-																	<img src="../images/rails.jpg" alt="Rails">
+																	<img src="img/pics/memory5.jpg" alt="Rails">
 															</a>
 															<div class="caption">
 																	<h3>Thumbnail label</h3>
@@ -166,7 +166,7 @@
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
 															<a class="lightbox" href="../images/traffic.jpg">
-																	<img src="../images/traffic.jpg" alt="Traffic">
+																	<img src="img/pics/memory6.jpg" alt="Traffic">
 															</a>
 															<div class="caption">
 																	<h3>Thumbnail label</h3>
