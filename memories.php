@@ -17,6 +17,14 @@
 			<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 			<link rel="stylesheet" href="thumbnail-gallery.css">
+
+			<style>
+				img {
+						width:200px;
+						height:400px;
+						object-fit:cover;
+				}
+			</style>
     </head>
     
     <body>
@@ -110,7 +118,7 @@
 
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
-															<a class="lightbox" href="../images/park.jpg">
+															<a class="lightbox" href="img/pics/memory1.jpg">
 																	<img src="img/pics/memory1.jpg" alt="Park">
 															</a>
 															<div class="caption">
@@ -121,7 +129,7 @@
 											</div>
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
-															<a class="lightbox" href="../images/bridge.jpg">
+															<a class="lightbox" href="img/pics/memory2.jpg">
 																	<img src="img/pics/memory2.jpg" alt="Bridge">
 															</a>
 															<div class="caption">
@@ -132,7 +140,7 @@
 											</div>
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
-															<a class="lightbox" href="../images/tunnel.jpg">
+															<a class="lightbox" href="img/pics/memory3.jpg">
 																	<img src="img/pics/memory3.jpg" alt="Tunnel">
 															</a>
 															<div class="caption">
@@ -143,7 +151,7 @@
 											</div>
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
-															<a class="lightbox" href="../images/coast.jpg">
+															<a class="lightbox" href="img/pics/memory4.jpg">
 																	<img src="img/pics/memory4.jpg" alt="Coast">
 															</a>
 															<div class="caption">
@@ -154,7 +162,7 @@
 											</div>
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
-															<a class="lightbox" href="../images/rails.jpg">
+															<a class="lightbox" href="img/pics/memory5.jpg">
 																	<img src="img/pics/memory5.jpg" alt="Rails">
 															</a>
 															<div class="caption">
@@ -165,7 +173,7 @@
 											</div>
 											<div class="col-sm-6 col-md-4">
 													<div class="thumbnail">
-															<a class="lightbox" href="../images/traffic.jpg">
+															<a class="lightbox" href="img/pics/memory6.jpg">
 																	<img src="img/pics/memory6.jpg" alt="Traffic">
 															</a>
 															<div class="caption">
