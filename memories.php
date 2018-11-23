@@ -20,8 +20,8 @@
 
 			<style>
 				img {
-						width:800px;
-						height:600px;
+						width:400px;
+						height:300px;
 						object-fit:cover;
 				}
 			</style>
