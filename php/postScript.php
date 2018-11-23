@@ -6,8 +6,7 @@
       // username and password sent from form 
       
       $postBody = $_POST['body'];
-      $sql = "INSERT INTO posts (who, body) VALUES ('$login_session', '$postBody')";
-
+      $sql = "INSERT INTO Posts (user_id, post_body, post_id, timestamp, significant_other, posted_by) VALUES (".$_SESSION['login_userId'].", '".$postBody."', NULL, CURRENT_TIMESTAMP, ".$_SESSION['login_significantOther'].", '".$_SESSION['login_userName']."')";
       if ($db->query($sql) === TRUE) {
         header("Location: ../index.php");
     } else {

@@ -6,13 +6,17 @@
 <html lang="en">
 	<head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-        <title>J&D - Home</title>
+        <title>J&D - Memories</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="assets/css/bootstrap.css" rel="stylesheet">
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 				<link href="assets/css/facebook.css" rel="stylesheet">
+
+			<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+			<link rel="stylesheet" href="thumbnail-gallery.css">
     </head>
     
     <body>
@@ -88,85 +92,90 @@
 						<div class="padding">
 							<div class="full col-sm-9">
 							  
-								<!-- content -->                      
-								<div class="row">
-								  
-								 <!-- main col left --> 
-								 <div class="col-sm-5">
-								   
-									  <div class="panel panel-default">
-										<div class="panel-thumbnail"><img src= <?php echo '"'.$_SESSION['login_profilePic'] .'"'; ?> class="img-responsive"></div>
-										<div class="panel-body">
-										  <p class="lead"><?php echo $_SESSION['login_userName']; ?></p>
-										  <p>Posted n times</p>
-										</div>
-									  </div>
-
-								  </div>
-								  
-								  <!-- main col right -->
-								  <div class="col-sm-7">
-										
-									   
-										<?php
-										$sql = "SELECT Posts.post_body, Posts.timestamp, Posts.post_id, Posts.posted_by, Posts.user_id  FROM Posts  WHERE Posts.user_id = ".$_SESSION['login_userId']." OR Posts.user_id = ".$_SESSION['login_significantOther']." ORDER BY timestamp DESC";
-										$result = $db->query($sql);
-
-										while($fetch_posts = $result->fetch_array(MYSQLI_ASSOC)) {
-											
-										$postId = $fetch_posts['post_id'];
-										$postBody = $fetch_posts['post_body'];
-										$postTimestamp = $fetch_posts['timestamp'];
-										$postedBy = $fetch_posts['posted_by'];
-										$postedByID = $fetch_posts['user_id'];
-
-										$sql = "SELECT profile_pic FROM User_Profile_Info where user_id = '$postedByID' ";
-										$result_profilePic = $db->query($sql);
-										$fetch_profilePic = $result_profilePic->fetch_array(MYSQLI_ASSOC);
-										$profilePic = $fetch_profilePic['profile_pic'];
-
-									   echo '<div class="panel panel-default">';
-										 echo '<div class="panel-heading"><a href="#" class="pull-right">Edit</a> <h4> Posted by '. $postedBy.'</h4></div>';
-										 echo '<div class="panel-body">';
-										 echo '<p><img src="'.$profilePic.'" class="img-circle pull-right"><h>'.$postBody.'</h></p>';
-										 echo '<div class="clearfix"></div>';
-										 echo '<hr>';
-										 echo 'Posted on ';
-										 $dt = new DateTime($postTimestamp);
-										 echo $dt->format('M j Y g:i A');
-										 echo '</div>';
-										 echo '</div>';
-										}
-										 ?>
-
-
-									
-								
-								  </div>
-							   </div><!--/row-->
-							  
-								<div class="row">
-								  <div class="col-sm-6">
-								  <a href="https://www.facebook.com/danny.vocal.core">Facebook</a>
-								  </div>
+								<!-- content -->
+								<div class="well well-lg text-center"> 
+									<form class="form" role="form" action="php/fileUpload.php" method="post" enctype="multipart/form-data">
+										<h4>Upload a Memory</h4>
+											<label class="btn btn-default btn-file">
+												Choose Picture <input type="file" name="photo" id="fileToUpload" style="display: none;">
+											</label>
+											<input class="form-control" type="text" name="photoName" id="photoId" placeholder="Name this memory" style="text-align: center">
+											<textarea name="photoDescription" id="photoDescriptionId" class="form-control" placeholder="Put your feelings about this pic here" style="text-align: center"></textarea>
+										<button type="submit" name="submit" class="btn btn-primary ">Upload</button>
+									</form>
 								</div>
-							  
-								<div class="row" id="footer">    
-								  <div class="col-sm-6">
-									
-								  </div>
-								  <div class="col-sm-6">
-									<p>
-									<a href="#" class="pull-right">�Copyright 2018</a>
-									</p>
-								  </div>
-								</div>
-							  
-							  <hr>
-							  
 								
-							  <hr>
-								
+								<div class="tz-gallery">
+									<div class="row">
+
+											<div class="col-sm-6 col-md-4">
+													<div class="thumbnail">
+															<a class="lightbox" href="../images/park.jpg">
+																	<img src="../images/park.jpg" alt="Park">
+															</a>
+															<div class="caption">
+																	<h3>Thumbnail label</h3>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+															</div>
+													</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+													<div class="thumbnail">
+															<a class="lightbox" href="../images/bridge.jpg">
+																	<img src="../images/bridge.jpg" alt="Bridge">
+															</a>
+															<div class="caption">
+																	<h3>Thumbnail label</h3>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+															</div>
+													</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+													<div class="thumbnail">
+															<a class="lightbox" href="../images/tunnel.jpg">
+																	<img src="../images/tunnel.jpg" alt="Tunnel">
+															</a>
+															<div class="caption">
+																	<h3>Thumbnail label</h3>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+															</div>
+													</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+													<div class="thumbnail">
+															<a class="lightbox" href="../images/coast.jpg">
+																	<img src="../images/coast.jpg" alt="Coast">
+															</a>
+															<div class="caption">
+																	<h3>Thumbnail label</h3>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+															</div>
+													</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+													<div class="thumbnail">
+															<a class="lightbox" href="../images/rails.jpg">
+																	<img src="../images/rails.jpg" alt="Rails">
+															</a>
+															<div class="caption">
+																	<h3>Thumbnail label</h3>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+															</div>
+													</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+													<div class="thumbnail">
+															<a class="lightbox" href="../images/traffic.jpg">
+																	<img src="../images/traffic.jpg" alt="Traffic">
+															</a>
+															<div class="caption">
+																	<h3>Thumbnail label</h3>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+															</div>
+													</div>
+											</div>
+									</div> <!-- /row -->
+								</div> <!-- /tzgallery -->			   
 							  
 							</div><!-- /col-9 -->
 						</div><!-- /padding -->
@@ -215,5 +224,10 @@
 				$('#btnShow').toggle();
 			});
         });
-        </script>
+				</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+		<script>
+			baguetteBox.run('.tz-gallery');
+		</script>
 </body></html>

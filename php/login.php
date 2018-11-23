@@ -21,6 +21,7 @@
       if($count == 1) {
          session_start();
          $sql  = 'SELECT Users.username, Users.user_id, User_Profile_Info.profile_pic, User_Profile_Info.significant_other FROM Users INNER JOIN User_Profile_Info ON Users.user_id = User_Profile_Info.user_id WHERE Users.user_id ='.$userid.'';
+
          $result = $db->query($sql);
          $fetch_session_variables = $result->fetch_array(MYSQLI_ASSOC);
 
