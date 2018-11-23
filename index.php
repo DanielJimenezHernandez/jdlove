@@ -76,7 +76,7 @@
 							  <li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Admin</a>
 								<ul class="dropdown-menu">
-								  <li><a href=""><?php echo $login_session; ?></a></li>
+								  <li><a href=""><?php echo $_SESSION['login_userName']; ?></a></li>
 								  <li><a href="php/logout.php">Log Out</a></li>
 								</ul>
 							  </li>
@@ -95,9 +95,9 @@
 								 <div class="col-sm-5">
 								   
 									  <div class="panel panel-default">
-										<div class="panel-thumbnail"><img src= <?php echo '"'.$profilePic.'"'; ?> class="img-responsive"></div>
+										<div class="panel-thumbnail"><img src= <?php echo '"'.$_SESSION['login_profilePic'] .'"'; ?> class="img-responsive"></div>
 										<div class="panel-body">
-										  <p class="lead"><?php echo $login_session; ?></p>
+										  <p class="lead"><?php echo $_SESSION['login_userName']; ?></p>
 										  <p>Posted n times</p>
 										</div>
 									  </div>
@@ -109,41 +109,32 @@
 										
 									   
 										<?php
-										$sql = "SELECT * FROM `posts` ORDER BY `posts`.`timestamp` DESC";
+										$sql = 'SELECT Posts.post_body, Posts.timestamp, Posts.post_id, Posts.posted_by, Posts.user_id, Users.username FROM Posts INNER JOIN Users ON Posts.user_id = Users.user_id WHERE Users.user_id = '.$_SESSION['login_userId'].' OR Posts.significant_other = '.$_SESSION['login_significantOther'].' ORDER BY timestamp DESC LIMIT 20';
 
-										$result = mysqli_query($db,$sql);
+										$result = $db->query($sql);
 
-										while($tableName = mysqli_fetch_row($result)) {
+										while($fetch_posts = $result->fetch_array(MYSQLI_ASSOC)) {
 											
-										$id = $tableName[0];
-										$timestamp = $tableName[1];
-										$who = $tableName[2];
-										$body = $tableName[3];
+										$postId = $fetch_posts['post_id'];
+										$postBody = $fetch_posts['post_body'];
+										$postTimestamp = $fetch_posts['timestamp'];
+										$postedBy = $fetch_posts['posted_by'];
+										$postedByID = $fetch_posts['user_id'];
 
-										$ses_sql = mysqli_query($db,"select thumbnail from members where username = '$who' ");
-										$row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-										$thumbnail = $row['thumbnail'];
+										$sql = "SELECT profile_pic FROM User_Profile_Info where user_id = '$postedByID' ";
+										$result_profilePic = $db->query($sql);
+										$fetch_profilePic = $result_profilePic->fetch_array(MYSQLI_ASSOC);
+										$profilePic = $fetch_profilePic['profile_pic'];
 
 									   echo '<div class="panel panel-default">';
-										 echo '<div class="panel-heading"><a href="#" class="pull-right">Edit</a> <h4> Posted by '. $who.'</h4></div>';
+										 echo '<div class="panel-heading"><a href="#" class="pull-right">Edit</a> <h4> Posted by '. $postedBy.'</h4></div>';
 										 echo '<div class="panel-body">';
-										 echo '<p><img src="'.$thumbnail.'" class="img-circle pull-right"><h>'.$body.'</h></p>';
+										 echo '<p><img src="'.$profilePic.'" class="img-circle pull-right"><h>'.$postBody.'</h></p>';
 										 echo '<div class="clearfix"></div>';
 										 echo '<hr>';
 										 echo 'Posted on ';
-										//Adjust Time from cookie
-										$timezone_offset_minutes = $_COOKIE['TimeZoneOffset'];  // $_GET['timezone_offset_minutes']
-
-										// Convert minutes to seconds
-										$timezone_name = timezone_name_from_abbr("", $timezone_offset_minutes*60, false);
-										$clientTimeZone = new DateTimeZone($timezone_name);
-										$serverTimeZone = new DateTimeZone(date_default_timezone_get());
-										
-										 //DateTime Object from mysql date
-										 $dt = new DateTime($timestamp,$serverTimeZone);
-										 $dt->setTimeZone($clientTimeZone);
+										 $dt = new DateTime($postTimestamp);
 										 echo $dt->format('M j Y g:i A');
-
 										 echo '</div>';
 										 echo '</div>';
 										}
