@@ -122,7 +122,7 @@
 										echo '<div class="col-sm-4 col-md-4">';
 										echo  '<div class="thumbnail">';
 										echo		'<a class="lightbox" href="'.$path.'">';
-										echo				'<img class="img-fluid img-thumbnail" style="height:400px; width: 100%; object-fit: cover;"  src="'.$path.'" alt="'.$fotoName.'">';
+										echo				'<img class="img-fluid img-thumbnail" style="height:200px; width: 100%; object-fit: cover;"  src="'.$path.'" alt="'.$fotoName.'">';
 										echo		'</a>';
 										echo		'<div class="caption">';
 										echo				'<h3>'.$fotoName.'</h3>';
