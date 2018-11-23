@@ -105,79 +105,41 @@
 										<button type="submit" name="submit" class="btn btn-primary ">Upload</button>
 									</form>
 								</div>
-								
+
 								<div class="tz-gallery">
 									<div class="row">
+									 <?php
+										$sql  = 'SELECT foto_name, path, caption FROM Pictures WHERE user_id = '.$_SESSION['login_userId'].' or user_id = '.$_SESSION['login_significantOther'].' ORDER BY RAND()';
+										$result = $db->query($sql);
+										$counter = 0;
 
-											<div class="col-sm-6 col-md-4">
-													<div class="thumbnail">
-															<a class="lightbox" href="img/pics/memory1.jpg">
-																	<img class="img-thumbnail"  src="img/pics/memory1.jpg" alt="Park">
-															</a>
-															<div class="caption">
-																	<h3>Thumbnail label</h3>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-															</div>
-													</div>
-											</div>
-											<div class="col-sm-6 col-md-4">
-													<div class="thumbnail">
-															<a class="lightbox" href="img/pics/memory2.jpg">
-																	<img class="img-thumbnail"  src="img/pics/memory2.jpg" alt="Bridge">
-															</a>
-															<div class="caption">
-																	<h3>Thumbnail label</h3>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-															</div>
-													</div>
-											</div>
-											<div class="col-sm-6 col-md-4">
-													<div class="thumbnail">
-															<a class="lightbox" href="img/pics/memory3.jpg">
-																	<img class="img-thumbnail"  src="img/pics/memory3.jpg" alt="Tunnel">
-															</a>
-															<div class="caption">
-																	<h3>Thumbnail label</h3>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-															</div>
-													</div>
-											</div>
-											<div class="col-sm-6 col-md-4">
-													<div class="thumbnail">
-															<a class="lightbox" href="img/pics/memory4.jpg">
-																	<img class="img-thumbnail"  src="img/pics/memory4.jpg" alt="Coast">
-															</a>
-															<div class="caption">
-																	<h3>Thumbnail label</h3>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-															</div>
-													</div>
-											</div>
-											<div class="col-sm-6 col-md-4">
-													<div class="thumbnail">
-															<a class="lightbox" href="img/pics/memory5.jpg">
-																	<img class="img-thumbnail"  src="img/pics/memory5.jpg" alt="Rails">
-															</a>
-															<div class="caption">
-																	<h3>Thumbnail label</h3>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-															</div>
-													</div>
-											</div>
-											<div class="col-sm-6 col-md-4">
-													<div class="thumbnail">
-															<a class="lightbox" href="img/pics/memory6.jpg">
-																	<img class="img-thumbnail" src="img/pics/memory6.jpg" alt="Traffic">
-															</a>
-															<div class="caption">
-																	<h3>Thumbnail label</h3>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-															</div>
-													</div>
-											</div>
-									</div> <!-- /row -->
-								</div> <!-- /tzgallery -->			   
-							  
+										while($fetch_posts = $result->fetch_array(MYSQLI_ASSOC)) {
+											
+										$fotoName = $fetch_posts['foto_name'];
+										$path = $fetch_posts['path'];
+										$caption = $fetch_posts['caption'];
+
+										echo '<div class="col-sm-4 col-md-4">';
+										echo  '<div class="thumbnail">';
+										echo		'<a class="lightbox" href="'.$path.'">';
+										echo				'<img class="img-fluid img-thumbnail" style="height:400px; width: 100%; object-fit: cover;"  src="'.$path.'" alt="'.$fotoName.'">';
+										echo		'</a>';
+										echo		'<div class="caption">';
+										echo				'<h3>'.$fotoName.'</h3>';
+										echo				'<p>'.$caption.'</p>';
+										echo '<div class="clearfix"></div>';
+										echo '<hr>';
+										echo 'Uploaded by:  ';
+										echo		'</div>';
+										echo	'</div>';
+										echo '</div>';
+
+										}
+										?>
+
+									</div>
+								</div>
+								
 							</div><!-- /col-9 -->
 						</div><!-- /padding -->
 					</div>
