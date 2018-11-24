@@ -1,24 +1,29 @@
 <?php
+    include("session.php");
     $currentDir = getcwd();
-    printf("Current Directory:%s <br>",$currentDir);
-    $uploadDirectory = "/../img/pics/";
 
     $errors = []; // Store all foreseen and unforseen errors here
 
     $fileExtensions = ['jpeg','jpg','png']; // Get all the file extensions
 
     $fileName = $_FILES['photo']['name'];
-    printf('File Name:%s<br>',$fileName );
     $fileSize = $_FILES['photo']['size'];
-    printf('File Size:%s<br>',$fileSize );
     $fileTmpName  = $_FILES['photo']['tmp_name'];
-    printf('File TmpName:%s<br>',$fileTmpName );
     $fileType = $_FILES['photo']['type'];
     $fileExtension = strtolower(end(explode('.',$fileName)));
 
+    $photoNameStripped = str_replace(' ', '_', $_POST['photoName']);
+    $finalName = $_SESSION['login_userName'] . '_' . $photoNameStripped . '.' . $fileExtension;
+ 
+    if ($_POST['path'] == 'img/pics/'){
+        $uploadDirectory = "/../img/pics/";
+        $uploadPath = $currentDir . $uploadDirectory . $finalName;
+    
+        $sql = "INSERT INTO Pictures (picture_id, path, user_id, foto_name, caption, full_path) VALUES (NULL, '".$_POST['path'].$finalName."', ".$_SESSION['login_userId'].", '".$_POST[photoName]."', '".$_POST[caption]."','".$uploadPath."')";
+        printf("SQL:%s<br>",$sql);
+        $returnTo = '../memories.php';
+    }
 
-    $uploadPath = $currentDir . $uploadDirectory . $_POST['photoName'] . '.' . $fileExtension;
-    printf('Upload Path: %s',$uploadPath);
 
 
     if (isset($_POST['submit'])) {
@@ -35,7 +40,11 @@
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
             if ($didUpload) {
-                echo "The file " . basename($fileName) . " has been uploaded";
+                if ($db->query($sql) === TRUE) {
+                    header("Location: ".$returnTo."");
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
             } else {
                 echo "An error occurred somewhere. Try again or contact the admin";
             }

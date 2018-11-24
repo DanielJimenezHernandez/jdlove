@@ -13,6 +13,7 @@
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 				<link href="assets/css/facebook.css" rel="stylesheet">
+				<link href="upload-style.css" rel="stylesheet">
 
 			<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
@@ -98,18 +99,33 @@
 							<div class="full col-sm-9">
 								<div class="well well-lg text-center"> 
 									<form class="form" role="form" action="php/fileUpload.php" method="post" enctype="multipart/form-data">
+										<input type="hidden" value=<?php echo '"'.$_SESSION['login_userId'] .'"'; ?> name="user_id" />
+										<input type="hidden" value="img/pics/" name="path" />
 										<h4>Upload a Memory</h4>
-											<label class="btn btn-default btn-file">
-												Choose Picture <input type="file" name="photo" id="fileToUpload" style="display: none;">
-											</label>
-											<input class="form-control" type="text" name="photoName" id="photoId" placeholder="Name this memory" style="text-align: center">
-											<textarea name="photoDescription" id="photoDescriptionId" class="form-control" placeholder="Put your feelings about this pic here" style="text-align: center"></textarea>
-										<button type="submit" name="submit" class="btn btn-primary ">Upload</button>
+										<hr>
+												<div class="form-group">
+														<label>Upload Image</label>
+														<div class="input-group">
+																<span class="input-group-btn">
+																		<span class="btn btn-primary btn-file">
+																				Browse… <input type="file" name="photo" id="fileToUpload">
+																		</span>
+																</span>
+																<input type="text" class="form-control" readonly>
+														</div>
+														<img id='img-upload'/>
+												</div>
+											<br>
+											<input class="form-control" type="text" name="photoName" id="photoId" placeholder="Name this memory" style="text-align: center" required>
+											<br>
+											<textarea name="caption" id="caption" class="form-control" placeholder="Put your feelings about this pic here" style="text-align: center"></textarea>
+											<br>
+											<button type="submit" name="submit" class="btn btn-primary ">Upload</button>
 									</form>
 								</div>
 							</div><!-- /col-9 -->
 							</div>
-
+							
 							<div class="row">
 								<div class="tz-gallery">
 									 <?php
@@ -190,6 +206,44 @@
 				$('#btnShow').toggle();
 			});
         });
+				</script>
+				<!--Script for image preview upload-->
+				<script type="text/javascript">
+							$(document).ready( function() {
+						$(document).on('change', '.btn-file :file', function() {
+					var input = $(this),
+						label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+					input.trigger('fileselect', [label]);
+					});
+
+					$('.btn-file :file').on('fileselect', function(event, label) {
+							
+							var input = $(this).parents('.input-group').find(':text'),
+									log = label;
+							
+							if( input.length ) {
+									input.val(log);
+							} else {
+									if( log ) alert(log);
+							}
+						
+					});
+					function readURL(input) {
+							if (input.files && input.files[0]) {
+									var reader = new FileReader();
+									
+									reader.onload = function (e) {
+											$('#img-upload').attr('src', e.target.result);
+									}
+									
+									reader.readAsDataURL(input.files[0]);
+							}
+					}
+
+					$("#fileToUpload").change(function(){
+							readURL(this);
+					}); 	
+				});
 				</script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
