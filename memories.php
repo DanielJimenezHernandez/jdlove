@@ -6,13 +6,19 @@
 <html lang="en">
 	<head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-        <title>J&D - Home</title>
+        <title>J&D - Memories</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="assets/css/bootstrap.css" rel="stylesheet">
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 				<link href="assets/css/facebook.css" rel="stylesheet">
+				<link href="upload-style.css" rel="stylesheet">
+
+			<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+			<link rel="stylesheet" href="thumbnail-gallery.css">
+
     </head>
     
     <body>
@@ -86,89 +92,74 @@
 						<!-- /top nav -->
 					  
 						<div class="padding">
-							<div class="full col-sm-9">
+							
 							  
-								<!-- content -->                      
-								<div class="row">
-								  
-								 <!-- main col left --> 
-								 <div class="col-sm-5">
-								   
-									  <div class="panel panel-default">
-										<div class="panel-thumbnail"><img src= <?php echo '"'.$_SESSION['login_profilePic'] .'"'; ?> class="img-responsive"></div>
-										<div class="panel-body">
-										  <p class="lead"><?php echo $_SESSION['login_userName']; ?></p>
-										  <p>Posted n times</p>
-										</div>
-									  </div>
-
-								  </div>
-								  
-								  <!-- main col right -->
-								  <div class="col-sm-7">
-										
-									   
-										<?php
-										$sql = "SELECT Posts.post_body, Posts.timestamp, Posts.post_id, Posts.posted_by, Posts.user_id  FROM Posts  WHERE Posts.user_id = ".$_SESSION['login_userId']." OR Posts.user_id = ".$_SESSION['login_significantOther']." ORDER BY timestamp DESC";
+								<!-- content -->
+							<div class="row">
+							<div class="full col-sm-9">
+								<div class="well well-lg text-center"> 
+									<form class="form" role="form" action="php/fileUpload.php" method="post" enctype="multipart/form-data">
+										<input type="hidden" value=<?php echo '"'.$_SESSION['login_userId'] .'"'; ?> name="user_id" />
+										<input type="hidden" value="img/pics/" name="path" />
+										<h4>Upload a Memory</h4>
+										<hr>
+												<div class="form-group">
+														<label>Upload Image</label>
+														<div class="input-group">
+																<span class="input-group-btn">
+																		<span class="btn btn-primary btn-file">
+																				Browse… <input type="file" name="photo" id="fileToUpload">
+																		</span>
+																</span>
+																<input type="text" class="form-control" readonly>
+														</div>
+														<img id='img-upload'/>
+												</div>
+											<br>
+											<input class="form-control" type="text" name="photoName" id="photoId" placeholder="Name this memory" style="text-align: center" required>
+											<br>
+											<textarea name="caption" id="caption" class="form-control" placeholder="Put your feelings about this pic here" style="text-align: center"></textarea>
+											<br>
+											<button type="submit" name="submit" class="btn btn-primary ">Upload</button>
+									</form>
+								</div>
+							</div><!-- /col-9 -->
+							</div>
+							
+							<div class="row">
+								<div class="tz-gallery">
+									 <?php
+										$sql  = 'SELECT foto_name, path, caption FROM Pictures WHERE user_id = '.$_SESSION['login_userId'].' or user_id = '.$_SESSION['login_significantOther'].' ORDER BY RAND()';
 										$result = $db->query($sql);
+										$counter = 0;
 
 										while($fetch_posts = $result->fetch_array(MYSQLI_ASSOC)) {
 											
-										$postId = $fetch_posts['post_id'];
-										$postBody = $fetch_posts['post_body'];
-										$postTimestamp = $fetch_posts['timestamp'];
-										$postedBy = $fetch_posts['posted_by'];
-										$postedByID = $fetch_posts['user_id'];
+										$fotoName = $fetch_posts['foto_name'];
+										$path = $fetch_posts['path'];
+										$caption = $fetch_posts['caption'];
 
-										$sql = "SELECT profile_pic FROM User_Profile_Info where user_id = '$postedByID' ";
-										$result_profilePic = $db->query($sql);
-										$fetch_profilePic = $result_profilePic->fetch_array(MYSQLI_ASSOC);
-										$profilePic = $fetch_profilePic['profile_pic'];
+										echo '<div class="col-sm-12 col-md-6 col-md-4">';
+										echo  '<div class="thumbnail">';
+										echo		'<a class="lightbox" href="'.$path.'">';
+										echo				'<img class="img-thumbnail" style="height:200px; width: 100%; object-fit: cover;"  src="'.$path.'" alt="'.$fotoName.'">';
+										echo		'</a>';
+										echo		'<div class="caption">';
+										echo				'<h3>'.$fotoName.'</h3>';
+										echo				'<p>'.$caption.'</p>';
+										echo '<div class="clearfix"></div>';
+										echo '<hr>';
+										echo 'Uploaded by:  ';
+										echo		'</div>';
+										echo	'</div>';
+										echo '</div>';
 
-									   echo '<div class="panel panel-default">';
-										 echo '<div class="panel-heading"><a href="#" class="pull-right">Edit</a> <h4> Posted by '. $postedBy.'</h4></div>';
-										 echo '<div class="panel-body">';
-										 echo '<p><img src="'.$profilePic.'" class="img-circle pull-right"><h>'.$postBody.'</h></p>';
-										 echo '<div class="clearfix"></div>';
-										 echo '<hr>';
-										 echo 'Posted on ';
-										 $dt = new DateTime($postTimestamp);
-										 echo $dt->format('M j Y g:i A');
-										 echo '</div>';
-										 echo '</div>';
 										}
 										?>
 
+								</div>
+							<div class="row">
 
-									
-								
-								  </div>
-							   </div><!--/row-->
-							  
-								<div class="row">
-								  <div class="col-sm-6">
-								  <a href="https://www.facebook.com/danny.vocal.core">Facebook</a>
-								  </div>
-								</div>
-							  
-								<div class="row" id="footer">    
-								  <div class="col-sm-6">
-									
-								  </div>
-								  <div class="col-sm-6">
-									<p>
-									<a href="#" class="pull-right">�Copyright 2018</a>
-									</p>
-								  </div>
-								</div>
-							  
-							  <hr>
-							  
-								
-							  <hr>
-								
-							  
-							</div><!-- /col-9 -->
 						</div><!-- /padding -->
 					</div>
 					<!-- /main -->
@@ -215,5 +206,48 @@
 				$('#btnShow').toggle();
 			});
         });
-        </script>
+				</script>
+				<!--Script for image preview upload-->
+				<script type="text/javascript">
+							$(document).ready( function() {
+						$(document).on('change', '.btn-file :file', function() {
+					var input = $(this),
+						label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+					input.trigger('fileselect', [label]);
+					});
+
+					$('.btn-file :file').on('fileselect', function(event, label) {
+							
+							var input = $(this).parents('.input-group').find(':text'),
+									log = label;
+							
+							if( input.length ) {
+									input.val(log);
+							} else {
+									if( log ) alert(log);
+							}
+						
+					});
+					function readURL(input) {
+							if (input.files && input.files[0]) {
+									var reader = new FileReader();
+									
+									reader.onload = function (e) {
+											$('#img-upload').attr('src', e.target.result);
+									}
+									
+									reader.readAsDataURL(input.files[0]);
+							}
+					}
+
+					$("#fileToUpload").change(function(){
+							readURL(this);
+					}); 	
+				});
+				</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+		<script>
+			baguetteBox.run('.tz-gallery');
+		</script>
 </body></html>
