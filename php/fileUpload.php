@@ -20,7 +20,6 @@
         $uploadPath = $currentDir . $uploadDirectory . $finalName;
     
         $sql = "INSERT INTO Pictures (picture_id, path, user_id, foto_name, caption, full_path) VALUES (NULL, '".$_POST['path'].$finalName."', ".$_SESSION['login_userId'].", '".$_POST[photoName]."', '".$_POST[caption]."','".$uploadPath."')";
-        printf("SQL:%s<br>",$sql);
         $returnTo = '../memories.php';
     }
 
@@ -32,7 +31,7 @@
             $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
         }
 
-        if ($fileSize > 2000000) {
+        if ($fileSize > 32000000) {
             $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB";
         }
 
