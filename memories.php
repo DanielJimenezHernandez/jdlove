@@ -108,7 +108,7 @@
 														<div class="input-group">
 																<span class="input-group-btn">
 																		<span class="btn btn-primary btn-file">
-																				Browse… <input type="file" name="photo" id="fileToUpload">
+																				Browse… <input type="file" name="photo" id="fileToUpload" accept=".jpg,.jpeg">
 																		</span>
 																</span>
 																<input type="text" class="form-control" readonly>
