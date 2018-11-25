@@ -107,7 +107,7 @@
 														<label>Upload Image</label>
 														<div class="input-group">
 																<span class="input-group-btn">
-																		<span class="btn btn-primary btn-file">
+																		<span class="btn btn-primary">
 																				Browse… <input type="file" name="photo" id="fileToUpload" accept=".jpg,.jpeg">
 																		</span>
 																</span>
